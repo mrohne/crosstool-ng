@@ -1,0 +1,4 @@
+repository='git git://linux-nfs.org/~steved/libtirpc'
+mirrors='https://downloads.sourceforge.net/project/libtirpc/libtirpc/${CT_LIBTIRPC_VERSION} https://sourceforge.net/projects/libtirpc/'
+archive_formats='.tar.bz2'
+signature_format='packed/.asc'

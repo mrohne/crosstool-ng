@@ -101,6 +101,10 @@ config ZLIB_NEEDED
     bool "Build local zlib"
     select COMP_LIBS_ZLIB
 
+config LIBTIRPC_NEEDED
+    bool "Build local tirpc"
+    select COMP_LIBS_LIBTIRPC
+
 # FIXME remove these legacy knobs
 config LIBICONV
     def_bool y
@@ -145,5 +149,9 @@ config NCURSES
 config ZLIB
     def_bool y
     depends on ZLIB_NEEDED
+
+config LIBTIRPC
+    def_bool y
+    depends on LIBTIRPC_NEEDED
 
 endmenu
