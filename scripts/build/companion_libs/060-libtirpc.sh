@@ -51,10 +51,29 @@ do_libtirpc_for_host() {
     CT_DoStep INFO "Installing libtirpc for host"
     CT_mkdir_pushd "${CT_BUILD_DIR}/build-libtirpc-host-${CT_HOST}"
 
-    libtirpc_opts+=( "host=${CT_HOST}" )
+    libtirpc_opts+=( "target=${CT_TARGET}" )
     libtirpc_opts+=( "prefix=${CT_HOST_COMPLIBS_DIR}" )
     libtirpc_opts+=( "cflags=${CT_CFLAGS_FOR_HOST}" )
     libtirpc_opts+=( "ldflags=${CT_LDFLAGS_FOR_HOST}" )
+    do_libtirpc_backend "${libtirpc_opts[@]}"
+
+    CT_Popd
+    CT_EndStep
+}
+
+# Build libtirpc for running on target
+do_libtirpc_for_target() {
+    local -a libtirpc_opts
+
+    CT_DoStep INFO "Installing libtirpc for target"
+    CT_mkdir_pushd "${CT_BUILD_DIR}/build-libtirpc-target-${CT_TARGET}"
+
+    libtirpc_opts+=( "host=${CT_TARGET}" )
+    libtirpc_opts+=( "prefix=${CT_PREFIX_DIR}" )
+    libtirpc_opts+=( "cflags=${CT_CFLAGS_FOR_TARGET}" )
+    libtirpc_opts+=( "ldflags=${CT_LDFLAGS_FOR_TARGET}" )
+    extra_config+=( "--host=${host}" )
+    extra_config+=( "CC=${host}-gcc" )
     do_libtirpc_backend "${libtirpc_opts[@]}"
 
     CT_Popd
