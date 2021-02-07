@@ -69,7 +69,7 @@ do_libtirpc_for_target() {
     CT_mkdir_pushd "${CT_BUILD_DIR}/build-libtirpc-target-${CT_TARGET}"
 
     libtirpc_opts+=( "host=${CT_TARGET}" )
-    libtirpc_opts+=( "prefix=${CT_PREFIX_DIR}" )
+    libtirpc_opts+=( "prefix=${CT_SYSROOT_DIR}/usr" )
     libtirpc_opts+=( "cflags=${CT_CFLAGS_FOR_TARGET}" )
     libtirpc_opts+=( "ldflags=${CT_LDFLAGS_FOR_TARGET}" )
     extra_config+=( "--host=${host}" )
